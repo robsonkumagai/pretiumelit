@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 set_time_limit(-1);
+ini_set('default_charset','UTF-8');
 
 use App\User;
 use function GuzzleHttp\choose_handler;
@@ -74,7 +75,6 @@ class ConcorrentesController extends Controller
 
         //Transforma o objeto em array e retorna as lojas com o valor ordenado
         foreach($product->sellers->id as $key=>$seller) {
-
             $arrayLojas[] = [
                 'id'    => $seller->id,
                 'nome'  => $seller->name,
@@ -101,14 +101,19 @@ class ConcorrentesController extends Controller
         $produto['preco_maximo']    = $product->sellers->highPrice;
         $produto['disponivel']      = $product->StockAvailability;
 
-        if ($minhaLoja['preco'] < $produto['preco_minimo']) {
-            $status = 'Ganhando Buybox';
-        } elseif ($minhaLoja['preco'] == $produto['preco_minimo']) {
-            $status = 'Empatado';
-        } elseif ($minhaLoja['preco'] > $produto['preco_minimo']) {
+        if (($minhaLoja['preco'] == $produto['preco_minimo'])) {
+            if (isset($arrayLojas[1]['preco'])) {
+                if (($minhaLoja['preco'] == $arrayLojas[1]['preco'])) {
+                    $status = 'Empatado';
+                } else {
+                    $status = 'Ganhando Buybox';
+                }
+            } else {
+                $status = 'Sem Concorrentes';
+            }
+        }
+        if ($minhaLoja['preco'] > $produto['preco_minimo']) {
             $status = 'Perdendo Buybox';
-        } elseif (count($arrayLojas) == 0) {
-            $status = 'Sem Concorrentes';
         }
 
         $contadorProduto = DB::table('comparador_produtos')
@@ -172,6 +177,7 @@ class ConcorrentesController extends Controller
                 ]);
 
                 $resposta = 'Link cadastrado com sucesso:' . $url . '<br>';
+                break;
             } else {
                 DB::table('comparador_concorrentes')->update([
                     'id_produto'       => $produto['mktplace_id'],
@@ -183,6 +189,7 @@ class ConcorrentesController extends Controller
                 ]);
 
                 $resposta = 'Link atualizado com sucesso:' . $url . '<br>';
+                break;
             }
         }
         return $resposta;
