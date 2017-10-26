@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+set_time_limit(-1);
 
 use App\User;
 use function GuzzleHttp\choose_handler;
@@ -22,83 +23,20 @@ class ConcorrentesController extends Controller
             ->get()
             ->all();
 
-        while($data) {
-            foreach ($data as $row){
-                $url = $row->url;
-                sleep(0.25);
-                ob_end_flush();
-                //echo 'Analisando link: '.$url.' </br>';
-                ob_start();
-                flush();
+        foreach ($data as $row) {
+            $url = $row->url;
+            sleep(0.25);
+            ob_end_flush();
+            echo 'Analisando link: '. $url .'</br>';
+            ob_start();
+            flush();
 
-                $contador = DB::table('comparador_produtos')
-                    ->where('anuncio','=',$url)
-                    ->count();
-
-            } if ($contador > 0) {
-                echo 'Link já cadastrado: '.$url.' </br>';
-                $this->tryUpdateProductFromUrl($url);
-            } else {
-                try {
-                    //$check = new check($url);
-                    //$resposta = $check->requestProductInformation();
-                    $resposta = $this->requestProductInformation($url);
-
-                    print_r($resposta); exit;
-/*
-                    //Parando aqui
-
-                    $prodName       = isset($resposta['nome']) ? $resposta['nome'] : '';
-                    $prodMktPlaceId = isset($resposta['mktplace_id']) ? $resposta['mktplace_id'] : '';
-                    $prodMarca      = isset($resposta['marca']) ? $resposta['marca'] : '';
-
-                    if(array_key_exists('marca', $resposta)){
-                        $prodMarca = $resposta['marca'];
-                        unset($resposta['marca']);
-                    }
-                    $prodCategoria = 'Não encontrada';
-                    if(array_key_exists('categoria', $resposta)){
-                        $prodCategoria = $resposta['categoria'];
-                        unset($resposta['categoria']);
-                    }
-                    unset($resposta['nome']);
-                    unset($resposta['mktplace_id']);
-
-                    $bestSeller = $resposta['best_seller'];
-                    unset($resposta['best_seller']);
-
-                    /*$base_url = parse_url($url)['host'];
-                    $base_url = str_replace(".com", "", $base_url);
-                    $base_url = str_replace(".br", "", $base_url);
-                    $base_url = str_replace("www.", "", $base_url);
-
-                    //base url retorna 'extra'
-
-                    DB:table('comparador_produtos')->insert([
-                       ['categoria' => $prodCategoria, 'marca' => $prodMarca, 'mktplace_id' => $prodMktPlaceId, 'nome' => $prodName, 'anuncio' => $url, 'canal' => 'extra']
-                    ]);
-
-                    /*$sqlInsert = "INSERT INTO comparador_produtos(categoria, marca, mktplace_id, nome, anuncio, canal) VALUES ('$prodCategoria', '$prodMarca', '$prodMktPlaceId', '$prodName', '$url', '$base_url')";
-                    if(!$result = $db->query($sqlInsert)){
-                        var_dump($sqlInsert);
-                        die("INSERT comparador_produtos SQL:".$db->error);
-                    }*/
-
-                    //
-                    //tryUpdateProductFromUrl($url);
-
-                    //Até aqui está certo
-                    $this->tryUpdateProductFromUrl($url);
-
-                } catch(Exception $ex){
-                    echo $ex->getMessage();
-                }
-            }
+            $this->buscaInfoProdutos($url);
         }
-
+        echo '<br>Busca terminada com sucesso!';
     }
 
-    public function requestProductInformation($url) {
+    public function buscaInfoProdutos($url) {
         $arrayLojas = array();
 
         if (!preg_match("/^(https|http)/", $url)){
@@ -136,85 +74,117 @@ class ConcorrentesController extends Controller
 
         //Transforma o objeto em array e retorna as lojas com o valor ordenado
         foreach($product->sellers->id as $key=>$seller) {
+
             $arrayLojas[] = [
                 'id'    => $seller->id,
                 'nome'  => $seller->name,
                 'preco' => $seller->price
             ];
 
+            if ($key == 19198) {
+                $minhaLoja = [
+                    'id'    => $seller->id,
+                    'nome'  => $seller->name,
+                    'preco' => $seller->price
+                ];
+            }
+
             //Ordena o Array
             usort($arrayLojas, [$this, 'Cmp']);
-
-            //Pega a primeira posição para o menor valor
-            $bestSeller = $arrayLojas[0];
         }
 
-        //$produto['id']              = 19198;
         $produto['nome']            = str_replace("'", "\'", urldecode($product->fullName));
         $produto['mktplace_id']     = $product->idSku;
         $produto['marca']           = str_replace("'", "\'", urldecode($product->nameBrand));
         $produto['categoria']       = str_replace("'", "\'", urldecode($product->categoryName));
         $produto['preco_minimo']    = $product->sellers->lowPrice;
         $produto['preco_maximo']    = $product->sellers->highPrice;
-        $produto['best_seller']     = $bestSeller;
         $produto['disponivel']      = $product->StockAvailability;
+
+        if ($minhaLoja['preco'] < $produto['preco_minimo']) {
+            $status = 'Ganhando Buybox';
+        } elseif ($minhaLoja['preco'] == $produto['preco_minimo']) {
+            $status = 'Empatado';
+        } elseif ($minhaLoja['preco'] > $produto['preco_minimo']) {
+            $status = 'Perdendo Buybox';
+        } elseif (count($arrayLojas) == 0) {
+            $status = 'Sem Concorrentes';
+        }
+
+        $contadorProduto = DB::table('comparador_produtos')
+            ->where([['mktplace_id','=', $produto['mktplace_id']],
+                     ['anuncio','=', $url]
+                    ])
+            ->count();
+
+        if ($contadorProduto == 0) {
+            DB::table('comparador_produtos')->insert([
+                'mktplace_id'      => $produto['mktplace_id'],
+                'empresa'          => $minhaLoja['nome'],
+                'nome'             => $produto['nome'],
+                'marca'            => $produto['marca'],
+                'categoria'        => $produto['categoria'],
+                'canal'            => 'extra',
+                'anuncio'          => $url,
+                'preco'            => $minhaLoja['preco'],
+                'preco_minimo'     => $produto['preco_minimo'],
+                'preco_maximo'     => $produto['preco_maximo'],
+                'disponivel'       => $produto['disponivel'],
+                'data'             => now(),
+                'data_atualizacao' => now(),
+                'status'           => $status,
+            ]);
+        } else {
+            DB::table('comparador_produtos')->update([
+                'mktplace_id'      => $produto['mktplace_id'],
+                'empresa'          => $minhaLoja['nome'],
+                'nome'             => $produto['nome'],
+                'marca'            => $produto['marca'],
+                'categoria'        => $produto['categoria'],
+                'canal'            => 'extra',
+                'anuncio'          => $url,
+                'preco'            => $minhaLoja['preco'],
+                'preco_minimo'     => $produto['preco_minimo'],
+                'preco_maximo'     => $produto['preco_maximo'],
+                'disponivel'       => $produto['disponivel'],
+                'data_atualizacao' => now(),
+                'status'           => $status,
+            ]);
+        }
 
         foreach($arrayLojas as $lojista) {
 
-            $contadorProduto = DB::table('comparador_concorrentes')
+            $contadorConcorrente = DB::table('comparador_concorrentes')
                 ->where([['id_produto','=', $produto['mktplace_id']],
-                    ['canal','=', 'extra']])
+                         ['anuncio','=', $url],
+                         ['nome','=', $lojista['nome']]
+                        ])
                 ->count();
 
-            if ($contadorProduto == 0) {
+            if ($contadorConcorrente == 0) {
                 DB::table('comparador_concorrentes')->insert([
-                    'id_produto' => $produto['mktplace_id'],
-                    'nome'       => $lojista['nome'],
-                    'canal'      => 'extra',
-                    'link'       => $url,
-                    'preco'      => $lojista['preco'],
-                    'disponivel' => $produto['disponivel'],
-                    'data'       => now(),
+                    'id_produto'       => $produto['mktplace_id'],
+                    'nome'             => $lojista['nome'],
+                    'canal'            => 'extra',
+                    'anuncio'          => $url,
+                    'preco'            => $lojista['preco'],
+                    'data'             => now(),
                 ]);
+
+                $resposta = 'Link cadastrado com sucesso:' . $url . '<br>';
             } else {
-                DB::table('comparador_concorrentes')->increment([
-                    'id_produto' => $produto['mktplace_id'],
-                    'nome'       => $lojista['nome'],
-                    'canal'      => 'extra',
-                    'link'       => $url,
-                    'preco'      => $lojista['preco'],
-                    'disponivel' => $produto['disponivel'],
-                    'data'       => now(),
-                ]);
-            }
-
-            if ($lojista['preco'] == $produto['preco_minimo']) {
-                $status = 'Ganhando Buybox';
-            } else {
-                $status = 'Perdendo Buybox';
-            }
-
-            DB::table('comparador_produtos')->insert([
-                    'mktplace_id'  => $produto['mktplace_id'],
-                    'nome'         => $produto['nome'],
-                    'marca'        => $produto['marca'],
-                    'categoria'    => $produto['categoria'],
-                    'canal'        => 'extra',
-                    'anuncio'      => $url,
-                    'preco_minimo' => $produto['preco_minimo'],
-                    'preco_maximo' => $produto['preco_maximo'],
-                    'preco'        => $lojista['preco'],
-                    'buybox'       => $lojista['nome'],
-                    'esgotado'     => $produto['esgotado'],
-                    'ultima_alteracao'     => now(),
-                    'ultimo_status' => $status,
+                DB::table('comparador_concorrentes')->update([
+                    'id_produto'       => $produto['mktplace_id'],
+                    'nome'             => $lojista['nome'],
+                    'canal'            => 'extra',
+                    'anuncio'          => $url,
+                    'preco'            => $lojista['preco'],
+                    'data_atualizacao' => now(),
                 ]);
 
+                $resposta = 'Link atualizado com sucesso:' . $url . '<br>';
             }
-
-        echo "Para";
-        exit;
-
+        }
         return $resposta;
     }
 }
