@@ -11,6 +11,23 @@
 |
 */
 
+/*Route::get('/', function () {
+    return view('index');
+});*/
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Auth::routes();
+
+//Route::get('/', 'PortalController@index')->name('portal');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('portal', 'PortalController');
+
+Route::get('portal',
+    ['as' => 'portal', 'uses' => 'PortalController@index']);
+
+Route::post('portal',
+    ['as' => 'portal_store', 'uses' => 'PortalController@store']);
