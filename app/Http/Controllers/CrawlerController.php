@@ -21,33 +21,35 @@ class CrawlerController extends Controller
 
     public function index() {
         $verbose = 1;
-        $url = 'https://www.extra.com.br/Lojista/19198/Eletro-oferta?Filtro=L19198&Ordenacao=precoCrescente';
+        $this->_url = 'https://www.extra.com.br/Lojista/19198/Eletro-oferta?Filtro=L19198&Ordenacao=precoDecrescente';
 
-        preg_match('/(http|https)\:\/\/(www.|)(.*).(com|.com.br)/', $url, $matches);
+        preg_match('/(http|https)\:\/\/(www.|)(.*).(com|.com.br)/', $this->_url, $matches);
 
         $this->_canal = $matches[3]; //retornar 'extra'
 
-        $parseUrl = parse_url($url); //Url separando loja e ordenação
+        $parseUrl = parse_url($this->_url); //Url separando loja e ordenação
 
         $this->_baseLink = $parseUrl['scheme']."://".$parseUrl['host']; //www.extra.com.br
 
         Log::info('Iniciando leitura do canal: Extra');
         DB::table('links_canais')->where('canal','=','extra')->delete();
 
-        $pages = $this->getLinksToLookUp(); //Olha a url e retorna a quantidade de páginas
+        $pages = $this->getLinksToLookUp(); //Olha a url e retorna as páginas separadas
 
         foreach($pages as $page){
-            $this->crawl_page($page,$url);
+            $this->crawl_page($page);
         }
 
-        //$this->_log->info("Leitura das urls finalizadas.", array('numberUrls'=>$db->query("SELECT COUNT(*) FROM links_canais where canal='$this->_canal'")));
+        $links = DB::table('links_canais')->where('canal','=','extra')->count();
+
+        echo "Leitura finalizada - " . $links . ' links cadastrados';
     }
 
 
     //Links a serem visitados
     public function getLinksToLookUp() {
         //Função ok
-        $url = 'https://www.extra.com.br/Lojista/19198/Eletro-oferta?Filtro=L19198&Ordenacao=precoCrescente';
+        $url = 'https://www.extra.com.br/Lojista/19198/Eletro-oferta?Filtro=L19198&Ordenacao=precoDecrescente';
 
         $urls = array();
 
@@ -69,7 +71,7 @@ class CrawlerController extends Controller
             }
         }
 
-        var_dump($numberOfPages);
+        //var_dump($numberOfPages);
 
         for($i=1; $i<=$numberOfPages; $i++){
             $urls[] = $this->_url.'&paginaAtual='.$i;
@@ -101,13 +103,11 @@ class CrawlerController extends Controller
         return array($response, $httpCode, $time);
     }
 
-    public function crawl_page($url,$page) {
-        $url = 'https://www.extra.com.br/Lojista/19198/Eletro-oferta?Filtro=L19198&Ordenacao=precoCrescente';
-
-        $this->_seen[$url] = true;
-        list($content, $httpcode, $time) = $this->_getContent($url);
+    public function crawl_page($page) {
+        $this->_seen[$page] = true;
+        list($content, $httpcode, $time) = $this->_getContent($page);
         if($this->_verbose)
-            $this->_printResult($url, $httpcode, $time);
+            $this->_printResult($page, $httpcode, $time);
 
         $this->_processAnchors($content);
     }
@@ -126,11 +126,29 @@ class CrawlerController extends Controller
         foreach($html_read->find('a.link') as $tag){
             $link = $tag->href;
 
-            DB::table('links_canais')->insert([
-                ['url' => $link, 'canal' => 'extra']
-            ]);
+            $contadorLinks = DB::table('links_canais')
+                ->where([['url','=', $link],
+                         ['canal','=', 'extra']
+                ])
+                ->count();
 
-            echo 'URL CADASTRADA: '.$link."</br>";
+            if ($contadorLinks == 0) {
+                DB::table('links_canais')->insert([
+                    'url'   => $link,
+                    'canal' => 'extra',
+                    'data'  => now()
+                ]);
+
+                echo 'Url Cadastrada: '.$link."</br></br>";
+            } else {
+                DB::table('links_canais')->update([
+                    'url'              => $link,
+                    'canal'            => 'extra',
+                    'data_atualizacao' => now()
+                ]);
+
+                echo 'Url Atualizada: '.$link."</br></br>";
+            }
         }
     }
 }
