@@ -99,6 +99,39 @@ class HomeController extends Controller
     public function relatorio() {
         $produtos = Produtos::get();
 
+        foreach($produtos as $produto) {
+
+            $menor = 0;
+
+            /*foreach($produto->concorrentes as $concorrente){
+                if ($menor == 0 || $concorrente->preco < $menor){
+                    $menor = $concorrente->preco;
+                }
+            }*/
+
+            $dif = $produto->preco-$menor;
+
+            if(($produto->preco != 0 && $menor != 0) && ($produto->preco-$menor) != 0){
+                $difP = 100/($produto->preco/($produto->preco-$menor));
+            } else {
+                $difP = 0;
+            }
+
+            if($difP > 0){
+                $produto->difPorc = '<span style="color:red;">'.number_format($difP, 2, ',', ' ').'%</span>';
+            } else {
+                $produto->difPorc = '<span style="color:green;">'.number_format($difP, 2, ',', ' ').'%</span>';
+            }
+
+            if($dif > 0){
+                $produto->difReais = '<span style="color:red;">R$'.number_format($dif, 2, ',', ' ').'</span>';
+            } else {
+                $produto->difReais = '<span style="color:green;">R$'.number_format($dif, 2, ',', ' ').'</span>';
+            }
+
+        }
+
         return view('relatorio',compact('produtos'));
     }
+
 }

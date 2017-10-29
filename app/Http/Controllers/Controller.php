@@ -14,4 +14,8 @@ class Controller extends BaseController
     function toMoney($real){
         return 'R$ '.sprintf('%0.2f', $real);
     }
+
+    function cmp($a, $b) {
+        return $a['preco'] > $b['preco'];
+    }
 }

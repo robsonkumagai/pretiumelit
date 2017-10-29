@@ -4,19 +4,13 @@ namespace App\Http\Controllers;
 set_time_limit(-1);
 ini_set('default_charset','UTF-8');
 
-use App\User;
-use function GuzzleHttp\choose_handler;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Sunra\PhpSimple\HtmlDomParser;
 
 class ConcorrentesController extends Controller
 {
-    function cmp($a, $b) {
-        return $a['preco'] > $b['preco'];
-    }
 
     public function index() {
         $data = DB::table('links_canais')
