@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('buscaprodutos','CrawlerController@index')->name('crawler');
 Route::get('buscaconcorrentes','ConcorrentesController@index')->name('concorrentes');
+Route::get('relatorio','HomeController@relatorio')->name('relatorio');
