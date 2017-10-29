@@ -1,7 +1,11 @@
 <!doctype html>
+<html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="Robson Kumagai">
+
     <title>Pretium Elit</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
