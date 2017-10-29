@@ -6,15 +6,18 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "consoletvs/charts": "^5.4",
         "ellipsesynergie/api-response": "^0.15.0",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
         "league/oauth2-google": "^2.0",
+        "orchestra/html": "~3.0",
         "phpmailer/phpmailer": "^6.0",
+        "sunra/php-simple-html-dom-parser": "1.5.2",
         "yajra/laravel-oci8": "~2.0",
-        "sunra/php-simple-html-dom-parser": "1.5.2"
+        "stevebauman/eloquenttable": "1.1.*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
