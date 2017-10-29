@@ -24,6 +24,8 @@ Auth::routes();
 
 //Route::get('/', 'PortalController@index')->name('portal');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/buybox', 'HomeController@graficos')->name('buybox');
+Route::get('/relatorio', 'HomeController@relatorio')->name('relatorio');
 Route::resource('portal', 'PortalController');
 
 Route::get('portal',
