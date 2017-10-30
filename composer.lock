@@ -1891,16 +1891,16 @@
         },
         {
             "name": "orchestra/support",
-            "version": "v3.5.0",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/support.git",
-                "reference": "0468b4b05577fad4b2baa7b816ea0258dd638ee1"
+                "reference": "b1812d0c95e85e80988327c67444bdd0e8784e6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/support/zipball/0468b4b05577fad4b2baa7b816ea0258dd638ee1",
-                "reference": "0468b4b05577fad4b2baa7b816ea0258dd638ee1",
+                "url": "https://api.github.com/repos/orchestral/support/zipball/b1812d0c95e85e80988327c67444bdd0e8784e6b",
+                "reference": "b1812d0c95e85e80988327c67444bdd0e8784e6b",
                 "shasum": ""
             },
             "require": {
@@ -1956,7 +1956,7 @@
                 "utilities",
                 "validator"
             ],
-            "time": "2017-09-03T04:00:27+00:00"
+            "time": "2017-10-30T14:34:10+00:00"
         },
         {
             "name": "paragonie/random_compat",
