@@ -74,8 +74,7 @@
             <div class="wrapper">
                 <div class="col-md-6">
                     <div class="about-photo">
-                        <img src="/images/extra.png" style="width: 300px; padding-left: 70px; padding-top: 50px"/>
-                        <img src="/images/americans.png" style="width: 80%"/>
+                        <img src="/images/extra.png" style="width: 450px; padding-left: 70px; padding-top: 50px"/>
                     </div>
                 </div>
 
@@ -84,7 +83,7 @@
                         <h3>Sobre Nós</h3>
                         <p>A <b>Pretium Elit</b> é uma plataforma que te auxiliará a tomar decisões mais <b>lucrativas</b> dentro de sua loja virtual.</p>
                         <p>Fornecemos uma visão detalhada do preço da concorrência, e a sua diferença (em Decimal e Porcentagem) apontando quais os produtos estão com valor abaixo ou acima em comparação aos produtos comercializados em seu e-commerce.</p>
-                        <p>Atualmente realizamos a busca nos <strong>MarketPlaces</strong> das lojas <strong>Americanas</strong> e <strong>Extra</strong>, captando todas as informações de valores dos lojistas que anunciam nestes sites. </p>
+                        <p>Atualmente realizamos a busca nos <strong>MarketPlaces</strong> que anunciam no portal do <strong>Extra</strong>, captando todas as informações de valores dos lojistas que anunciam neste site. </p>
                     </div>
                 </div>
 
@@ -194,7 +193,7 @@
                             <div class="modal-content">
                                 <div class="modal-body">
 
-                                    {!! Form::open(array('route' => 'portal_store', 'class' => 'form')) !!}
+                                    {!! Form::open(array('route' => 'cadastro_email', 'class' => 'form')) !!}
 
                                         <fieldset>
                                             <legend>Cadastre-se!</legend>
@@ -265,12 +264,12 @@
                                                 <div class="col-md-6">
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="NEWS" value="yes" /> Sim
+                                                            <input type="radio" name="NEWS" value="1" /> Sim
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="NEWS" value="no" /> Não
+                                                            <input type="radio" name="NEWS" value="0" /> Não
                                                         </label>
                                                     </div>
                                                 </div>
@@ -281,12 +280,12 @@
                                                 <div class="col-md-6">
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="INVESTIR" value="yes" /> Sim
+                                                            <input type="radio" name="INVESTIR" value="1" /> Sim
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="INVESTIR" value="no" /> Não
+                                                            <input type="radio" name="INVESTIR" value="0" /> Não
                                                         </label>
                                                     </div>
                                                 </div>
@@ -325,9 +324,9 @@
                     <div class="contact-category">
                         <div class="social">
                             <h3>Mídias Sociais :</h3>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a target="_blank" href="https://www.facebook.com/Pretium-Elit-Solu%C3%A7%C3%B5es-para-e-commerce-122319878474958/?ref=br_rs"><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" href="https://twitter.com/pretiumelit"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="https://www.instagram.com/pretiumelit/"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
 
@@ -342,7 +341,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright text-center">
-                    <p>Pretium Elit 2017 - Adaptado de <a target="_blank" href="http://bootstrapthemes.co"> Bootstrap Themes </a></p>
+                    <p style="color: darkgray">Pretium Elit 2017 - Adaptado de <a target="_blank" style="color: darkgray" href="http://bootstrapthemes.co"> Bootstrap Themes </a></p>
                 </div>
             </div>
         </div>
