@@ -79,6 +79,9 @@
                     <a href="{{ url('/relatorio') }}"><i class="fa fa-table fa-fw"></i> Relatório</a>
                 </li>
                 <li>
+                    <a href="{{ url('/blog') }}"><i class="fa fa-newspaper-o fa-fw"></i> Blog</a>
+                </li>
+                <li>
                     <a href="#suporteModal" id="#suporteBtn" data-target="#suporteModal" data-toggle="modal"><i class="fa fa-envelope-o fa-fw"></i> Contato</a>
                 </li>
             </ul>
@@ -122,7 +125,7 @@
             <div class="modal-content">
                 <div class="modal-body">
 
-                    {!! Form::open(array('route' => 'portal_store', 'class' => 'form')) !!}
+                    {!! Form::open(array('route' => 'contato_email', 'class' => 'form')) !!}
 
                     <fieldset>
                         <legend>Contato!</legend>
@@ -178,22 +181,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">A Pretium Elit te auxiliou em sua precificação?</label>
-                            <div class="col-md-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="INVESTIR" value="yes" /> Sim
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="INVESTIR" value="no" /> Não
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                     </fieldset>
                 </div>
                 <div class="modal-footer">
@@ -211,7 +198,6 @@
 
 </div>
 
-
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/metisMenu.min.js"></script>
@@ -219,6 +205,7 @@
 <script src="/js/morris.min.js"></script>
 <script src="/js/morris-data.js"></script>
 <script src="/js/sb-admin-2.js"></script>
+<script src="/js/home.js"></script>
 
 </body>
 

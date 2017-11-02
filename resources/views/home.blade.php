@@ -79,6 +79,9 @@
                         <a href="{{ url('/relatorio') }}"><i class="fa fa-table fa-fw"></i> Relatório</a>
                     </li>
                     <li>
+                        <a href="{{ url('/blog') }}"><i class="fa fa-newspaper-o fa-fw"></i> Blog</a>
+                    </li>
+                    <li>
                         <a href="#suporteModal" id="#suporteBtn" data-target="#suporteModal" data-toggle="modal"><i class="fa fa-envelope-o fa-fw"></i> Contato</a>
                     </li>
                 </ul>
@@ -142,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-            <h3 style="margin-left: 15px">Baixe já o eBook "<a target="_blank" href='http://materiais.rockcontent.com/e1t/c/*W1n5S4353vGK-W4FPzcS7fxXkh0/*W2XL5l21psY5mW1G4-6815LLY-0/5/f18dQhb0S1V27Bf-yvTCK4t1s_fYWW2Pg8yp1SJlktW1Mkfv64N4Cj5W2pyKn367ztDgW3sbL7k997CqMW6YjXW_8NR6GjW5KlVHn1LPpscW5QnVhg2XDpZPW31fr1V8Gwf0nW29n2v85SjYZJW7NpGjQ3psHrzW6NRwh07GNrFqW1FQqgM5nqxZZN8C_8X_LNBSSW55lhRD2xLD24W3nRpT11_VNYlW1wqpYM7nRlcKN1pGlPNPXSFhW31sx165vfbxZW3y14Pz7bq554W3TfJpv73BTqYN19GZ3XqX536N1SjlBrN9WSjW41TsWg4LYwGNW4LY6W18QCBlmW49nX4j4HZh7HW4XccGP95p-KpW8rkl-x71-j9jW36gJ1s5rJpXyW8WfK22311r2PVYbhmf6jwY46VjKM8V2CSdLtW26fPM882j_cGVRCHCm1dRp3MW4bBR8d2Mt63JW1cktYJ7-1Pw7W2cS3vZ3qS5JdW4xz9KS9gp_8JW3F_M9h953c35W8_vWKS20mZC_W3n6MLK1tkfl8W3jNxxy6DVW_qW3qqSX63xTHgTW2h2bXs4TnQ23N87Ssd6mms--W1y8fQ32S_ptDW5XvnjS3010P3W6n1Fjy3jx-x4W919MMB44-H1WW8CGv8z5KgDv1W8_8z9b8ZjryfN99LGnZr1rYqW3MMHDG1rtYxt111' style="color: deepskyblue">E-commerce: Da Criação à Fidelização de Clientes</a>" e aprenda a fidelizar clientes em sua sua loja.</h3>
+            <h3 style="margin-left: 15px">Baixe já o eBook "<a target="_blank" href='http://materiais.rockcontent.com/e1t/c/*W1n5S4353vGK-W4FPzcS7fxXkh0/*W2XL5l21psY5mW1G4-6815LLY-0/5/f18dQhb0S1V27Bf-yvTCK4t1s_fYWW2Pg8yp1SJlktW1Mkfv64N4Cj5W2pyKn367ztDgW3sbL7k997CqMW6YjXW_8NR6GjW5KlVHn1LPpscW5QnVhg2XDpZPW31fr1V8Gwf0nW29n2v85SjYZJW7NpGjQ3psHrzW6NRwh07GNrFqW1FQqgM5nqxZZN8C_8X_LNBSSW55lhRD2xLD24W3nRpT11_VNYlW1wqpYM7nRlcKN1pGlPNPXSFhW31sx165vfbxZW3y14Pz7bq554W3TfJpv73BTqYN19GZ3XqX536N1SjlBrN9WSjW41TsWg4LYwGNW4LY6W18QCBlmW49nX4j4HZh7HW4XccGP95p-KpW8rkl-x71-j9jW36gJ1s5rJpXyW8WfK22311r2PVYbhmf6jwY46VjKM8V2CSdLtW26fPM882j_cGVRCHCm1dRp3MW4bBR8d2Mt63JW1cktYJ7-1Pw7W2cS3vZ3qS5JdW4xz9KS9gp_8JW3F_M9h953c35W8_vWKS20mZC_W3n6MLK1tkfl8W3jNxxy6DVW_qW3qqSX63xTHgTW2h2bXs4TnQ23N87Ssd6mms--W1y8fQ32S_ptDW5XvnjS3010P3W6n1Fjy3jx-x4W919MMB44-H1WW8CGv8z5KgDv1W8_8z9b8ZjryfN99LGnZr1rYqW3MMHDG1rtYxt111' style="color: deepskyblue">E-commerce: Da Criação à Fidelização de Clientes</a>" e aprenda a fidelizar clientes em sua loja.</h3>
             <h6 style="margin-left: 17px; margin-top: 157px ">eBook cedido por: Rock Content (https://rockcontent.com/) </h6>
         </div>
     </div>
@@ -154,7 +157,7 @@
             <div class="modal-content">
                 <div class="modal-body">
 
-                    {!! Form::open(array('route' => 'portal_store', 'class' => 'form')) !!}
+                    {!! Form::open(array('route' => 'contato_email', 'class' => 'form')) !!}
 
                     <fieldset>
                         <legend>Contato!</legend>
@@ -195,7 +198,7 @@
                             <div class="col-md-6 inputGroupContainer">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                    <input name="SITE" placeholder="Empresa" class="form-control" type="text">
+                                    <input name="EMPRESA" placeholder="Empresa" class="form-control" type="text">
                                 </div>
                             </div>
                         </div>
@@ -206,22 +209,6 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                     <textarea class="form-control" name="SUGESTAO" placeholder="Deixe sua dúvida ou sugestão."></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">A Pretium Elit te auxiliou em sua precificação?</label>
-                            <div class="col-md-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="INVESTIR" value="yes" /> Sim
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="INVESTIR" value="no" /> Não
-                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -250,6 +237,7 @@
 <script src="/js/morris.min.js"></script>
 <script src="/js/morris-data.js"></script>
 <script src="/js/sb-admin-2.js"></script>
+<script src="/js/home.js"></script>
 
 </body>
 

@@ -264,12 +264,12 @@
                                                 <div class="col-md-6">
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="NEWS" value="1" /> Sim
+                                                            <input type="radio" name="NEWS" value="Sim" /> Sim
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="NEWS" value="0" /> Não
+                                                            <input type="radio" name="NEWS" value="Não" /> Não
                                                         </label>
                                                     </div>
                                                 </div>
@@ -280,12 +280,12 @@
                                                 <div class="col-md-6">
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="INVESTIR" value="1" /> Sim
+                                                            <input type="radio" name="INVESTIR" value="Sim" /> Sim
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" name="INVESTIR" value="0" /> Não
+                                                            <input type="radio" name="INVESTIR" value="Não" /> Não
                                                         </label>
                                                     </div>
                                                 </div>
