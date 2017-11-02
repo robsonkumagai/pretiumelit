@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+    'host' => env('MAIL_HOST', 'smtp-mail.outlook.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'pretiumelit@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'pretiumelit@outlook.com'),
         'name' => env('MAIL_FROM_NAME', 'pretium'),
     ],
 
@@ -83,10 +83,13 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
+    'username' => env('MAIL_USERNAME','pretiumelit@outlook.com'),
 
-    'username' => env('9fe7999694336d'),
+    'password' => env('MAIL_PASSWORD','mudar*123'),
 
-    'password' => env('1cfb5e1f6249c1'),
+    //'username' => env('pretiumelit@outlook.com'),
+
+    //'password' => env('mudar*123'),
 
     /*
     |--------------------------------------------------------------------------

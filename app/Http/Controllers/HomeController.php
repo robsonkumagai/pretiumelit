@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Concorrentes;
+use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
 use ConsoleTVs\Charts\Facades\Charts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Produtos;
+use Illuminate\Support\Facades\Mail;
 use Orchestra\Support\Facades\Form;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class HomeController extends Controller
 {
@@ -89,49 +92,27 @@ class HomeController extends Controller
         return view('buybox',compact('buybox','categoria','marcas','concorrentes'));
     }
 
-    public function portal() {
-        $form = Input::all();
+    public function contatoEmail(Request $request) {
+        $conteudo = $request->all();
 
-        print_r($form); exit;
+        Mail::send('emails.contatoEmail', ["form" => $conteudo], function ($message)
+        {
+            $message->from('pretiumelit@outlook.com', 'Pretium Elit');
+            $message->to('pretiumelit@gmail.com');
 
+        });
+
+        print_r(response()); exit;
+
+        //Alterar o redirecionamento
+        return response()->json(['message' => 'Request completed']);
     }
 
     public function relatorio() {
-        $produtos = Produtos::get();
-
-        foreach($produtos as $produto) {
-
-            $menor = 0;
-
-            /*foreach($produto->concorrentes as $concorrente){
-                if ($menor == 0 || $concorrente->preco < $menor){
-                    $menor = $concorrente->preco;
-                }
-            }*/
-
-            $dif = $produto->preco-$menor;
-
-            if(($produto->preco != 0 && $menor != 0) && ($produto->preco-$menor) != 0){
-                $difP = 100/($produto->preco/($produto->preco-$menor));
-            } else {
-                $difP = 0;
-            }
-
-            if($difP > 0){
-                $produto->difPorc = '<span style="color:red;">'.number_format($difP, 2, ',', ' ').'%</span>';
-            } else {
-                $produto->difPorc = '<span style="color:green;">'.number_format($difP, 2, ',', ' ').'%</span>';
-            }
-
-            if($dif > 0){
-                $produto->difReais = '<span style="color:red;">R$'.number_format($dif, 2, ',', ' ').'</span>';
-            } else {
-                $produto->difReais = '<span style="color:green;">R$'.number_format($dif, 2, ',', ' ').'</span>';
-            }
-
-        }
-
-        return view('relatorio',compact('produtos'));
+        return view('relatorio');
     }
 
+    public function blog() {
+        return view('blog');
+    }
 }

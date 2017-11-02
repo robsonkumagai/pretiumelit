@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PortalFormRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
+use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\Console\Input\Input;
 
 class PortalController extends Controller
@@ -36,20 +38,19 @@ class PortalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function cadastroEmail(Request $request)
     {
-        \Mail::send('emails.formCadastro',
-            array(
-                'NOME' => $request->get('NOME'),
-                'EMAIL' => $request->get('EMAIL'),
-                'SUGESTAO' => $request->get('SUGESTAO')
-            ), function($message)
-            {
-                //$message->from('pretiumelit@gmail.com');
-                $message->to('pretiumelit@gmail.com')->send();
-            });
+        $conteudo = $request->all();
 
-        return \Redirect::route('portal')->with('message', 'Obrigado pelo cadastro!');
+        Mail::send('emails.cadastroEmail', ["form" => $conteudo], function ($message)
+        {
+            $message->from('pretiumelit@outlook.com', 'Pretium Elit');
+            $message->to('pretiumelit@gmail.com');
+
+        });
+
+        //Alterar o redirecionamento
+        return response()->json(['message' => 'Request completed']);
     }
 
     /**
