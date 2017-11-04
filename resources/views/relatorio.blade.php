@@ -17,6 +17,12 @@
     <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="/css/dataTables.responsive.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </head>
@@ -81,6 +87,9 @@
                     <a href="{{ url('/relatorio') }}"><i class="fa fa-table fa-fw"></i> Relatório</a>
                 </li>
                 <li>
+                    <a href="{{ url('/blog') }}"><i class="fa fa-newspaper-o fa-fw"></i> Blog</a>
+                </li>
+                <li>
                     <a href="#suporteModal" id="#suporteBtn" data-target="#suporteModal" data-toggle="modal"><i class="fa fa-envelope-o fa-fw"></i> Contato</a>
                 </li>
             </ul>
@@ -98,32 +107,77 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="relatorioTable">
-                            <thead>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                    <th>CSS grade</th>
-                                    <th>CSS grade</th>
-                                    <th>CSS grade</th>
-                                    <th>CSS grade</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                            </thead>
+                <table id="dataRelatorio" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <td style="width: 300px">Produto</td>
+                        <td>Marca</td>
+                        <td>Categoria</td>
+                        <td style="width: 160px">Valores</td>
+                        <td style="width: 140px">Diferenças</td>
+                        <td>Buybox</td>
+                    </tr>
+                    </thead>
 
-                            <tbody>
-                            </tbody>
+                    <?php
+                        use App\Produtos;
 
-                        </table>
-                    </div>
-                </div>
+                        $produtos = Produtos::get();
+
+                        foreach ($produtos as $produto)
+                        {
+                            //Cálculo de porcentagem
+
+                            if($produto['preco'] == $produto['preco_maximo']){
+                                $diferencaPorc = 0;
+                            }
+
+                            if(($produto['preco'] > $produto['preco_minimo'])){
+                                $diferencaPorc = 100 / ($produto['preco'] / ($produto['preco'] - $produto['preco_minimo']));
+                                //$diferencaPorc = (($produto['preco_maximo'] - $produto['preco']) / $produto['preco'] * 100);
+                                $produto['diffPorc'] = '<span style="color:red;">+ '.number_format($diferencaPorc, 2, ',', ' ').'%</span>';
+                            } else {
+                                //$diferencaPorc = (100 / ($produto['preco'] - $produto['preco_maximo']));
+                                $diferencaPorc = (($produto['preco_maximo'] - $produto['preco']) / $produto['preco'] * 100);
+                                $produto['diffPorc'] = '<span style="color:green;">'.number_format($diferencaPorc, 2, ',', ' ').'%</span>';
+                            }
+
+                            //Cálculo de valor
+
+                            if(($produto['preco'] > $produto['preco_minimo'])){
+                                $diferencaValor = $produto['preco'] - $produto['preco_minimo'];
+                                $produto['diffReais'] = '<span style="color:red;">R$'.number_format($diferencaValor, 2, ',', ' ').'</span>';
+                            } else {
+                                $diferencaValor = $produto['preco'] - $produto['preco_maximo'];
+                                $produto['diffReais'] = '<span style="color:green;">R$'.number_format($diferencaValor, 2, ',', ' ').'</span>';
+                            }
+
+                            $produto['preco'] = '<span>R$ '.number_format($produto['preco'], 2, ',', ' ').'</span>';
+                            $produto['preco_minimo'] = '<span>R$ '.number_format($produto['preco_minimo'], 2, ',', ' ').'</span>';
+                            $produto['preco_maximo'] = '<span>R$ '.number_format($produto['preco_maximo'], 2, ',', ' ').'</span>';
+
+                            if($produto['status'] == 'Ganhando Buybox') {
+                                $produto['status'] = '<span style="color:green;">Ganhando Buybox</span>';
+                            }
+
+                            if($produto['status'] == 'Perdendo Buybox') {
+                                $produto['status'] = '<span style="color:red;">Perdendo Buybox</span>';
+                            }
+
+                            echo '
+                                   <tr>
+                                        <td>'.$produto["nome"].' <br><a style="color: #00b3ee" href="'.$produto['anuncio'].'" target="_blank">Link</a> </td>
+                                        <td>'.$produto["marca"].'</td>
+                                        <td>'.$produto["categoria"].'</td>
+                                        <td><strong>Valor:</strong> '.$produto["preco"].' <br><strong>Valor Mínimo:</strong> '.$produto["preco_minimo"].'<br><strong>Valor Máximo:</strong> '.$produto["preco_maximo"].'</td>
+                                        <td><strong>Porcentagem:</strong> '.$produto["diffPorc"].' <br><strong>Reais:</strong> '.$produto["diffReais"].'</td>
+                                        <td>'.$produto["status"].'</td>
+                                   </tr>
+                                   ';
+                        }
+                    ?>
+                </table>
             </div>
-        </div>
     </div>
 
     <!-- Início Modal-->
@@ -133,7 +187,7 @@
             <div class="modal-content">
                 <div class="modal-body">
 
-                    {!! Form::open(array('route' => 'portal_store', 'class' => 'form')) !!}
+                    {!! Form::open(array('route' => 'contato_email', 'class' => 'form')) !!}
 
                     <fieldset>
                         <legend>Contato!</legend>
@@ -185,22 +239,6 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                     <textarea class="form-control" name="SUGESTAO" placeholder="Deixe sua dúvida ou sugestão."></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">A Pretium Elit te auxiliou em sua precificação?</label>
-                            <div class="col-md-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="INVESTIR" value="yes" /> Sim
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="INVESTIR" value="no" /> Não
-                                    </label>
                                 </div>
                             </div>
                         </div>

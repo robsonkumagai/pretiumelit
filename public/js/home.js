@@ -12,11 +12,11 @@ $(function(){
     });
 })
 
-    /*$(window).ready(function(){
+    $(window).ready(function(){
         "use strict";
         function format ( d ) {
+            alert(3);
             console.log(d);
-            alert(3)
             // `d` is the original data object for the row
             var returnLayout = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
                 '<tr>'+
@@ -41,7 +41,7 @@ $(function(){
         }
 
         var concorrente_data_table = $('#relatorioTable').DataTable({
-            "ajax": "{{url('api/relatorio')}}",
+            "ajax": "/api/buscarelatorio",
             "columns": [
                 {
                     "className":      'details-control',
@@ -80,17 +80,54 @@ $(function(){
         } );
 
 
-    });*/
+    });
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     "use strict";
     $('#relatorioTable').DataTable( {
-        "ajax": "{{url('api/relatorio')}}"
-    } );
+        "ajax": "/api/buscarelatorio",
+
+        "columns": [
+            {
+                "className":      'details-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            { "data": "mktplace_id"},
+            { "data": "nome"},
+            { "data": "canal"},
+            { "data": "anuncio"},
+            { "data": "preco"},
+            //{ "data": "ultima_alteracao"},
+            //{ "data": "precoR"},
+            //{ "data": "buybox"},
+            //{ "data": "difReais"},
+            //{ "data": "difPorc"},
+            //{ "data": "status"}
+        ],
+        "order": [[3, 'asc']]
+    });
 } );
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('#dataTables-example').DataTable({
         responsive: true
     });
+});*/
+
+$("#formEmail").on("click", function() {
+    $.ajax({
+        type:'POST',
+        url:'/contatoemail',
+        data: {'nome' : $('#NOME').val()},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).ready(function(){
+    $('#dataRelatorio').DataTable();
 });
