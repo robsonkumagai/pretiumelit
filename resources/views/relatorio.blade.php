@@ -113,6 +113,7 @@
                         <td style="width: 300px">Produto</td>
                         <td>Marca</td>
                         <td>Categoria</td>
+                        <td>Data Atualização</td>
                         <td style="width: 160px">Valores</td>
                         <td style="width: 140px">Diferenças</td>
                         <td>Buybox</td>
@@ -139,7 +140,12 @@
                             } else {
                                 //$diferencaPorc = (100 / ($produto['preco'] - $produto['preco_maximo']));
                                 $diferencaPorc = (($produto['preco_maximo'] - $produto['preco']) / $produto['preco'] * 100);
-                                $produto['diffPorc'] = '<span style="color:green;">'.number_format($diferencaPorc, 2, ',', ' ').'%</span>';
+
+                                if ($diferencaPorc != 0) {
+                                    $produto['diffPorc'] = '<span style="color:green;">'.number_format($diferencaPorc, 2, ',', ' ').'%</span>';
+                                } else {
+                                    $produto['diffPorc'] = '<span>'.number_format($diferencaPorc, 2, ',', ' ').'%</span>';
+                                }
                             }
 
                             //Cálculo de valor
@@ -149,7 +155,12 @@
                                 $produto['diffReais'] = '<span style="color:red;">R$'.number_format($diferencaValor, 2, ',', ' ').'</span>';
                             } else {
                                 $diferencaValor = $produto['preco'] - $produto['preco_maximo'];
-                                $produto['diffReais'] = '<span style="color:green;">R$'.number_format($diferencaValor, 2, ',', ' ').'</span>';
+
+                                if ($diferencaValor != 0){
+                                    $produto['diffReais'] = '<span style="color:green;">R$'.number_format($diferencaValor, 2, ',', ' ').'</span>';
+                                } else {
+                                    $produto['diffReais'] = '<span>R$'.number_format($diferencaValor, 2, ',', ' ').'</span>';
+                                }
                             }
 
                             $produto['preco'] = '<span>R$ '.number_format($produto['preco'], 2, ',', ' ').'</span>';
@@ -169,6 +180,7 @@
                                         <td>'.$produto["nome"].' <br><a style="color: #00b3ee" href="'.$produto['anuncio'].'" target="_blank">Link</a> </td>
                                         <td>'.$produto["marca"].'</td>
                                         <td>'.$produto["categoria"].'</td>
+                                        <td>'.$produto["data_atualizacao"].'</td>
                                         <td><strong>Valor:</strong> '.$produto["preco"].' <br><strong>Valor Mínimo:</strong> '.$produto["preco_minimo"].'<br><strong>Valor Máximo:</strong> '.$produto["preco_maximo"].'</td>
                                         <td><strong>Porcentagem:</strong> '.$produto["diffPorc"].' <br><strong>Reais:</strong> '.$produto["diffReais"].'</td>
                                         <td>'.$produto["status"].'</td>
@@ -228,7 +240,7 @@
                             <div class="col-md-6 inputGroupContainer">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                    <input name="SITE" placeholder="Empresa" class="form-control" type="text">
+                                    <input name="EMPRESA" placeholder="Empresa" class="form-control" type="text">
                                 </div>
                             </div>
                         </div>

@@ -166,7 +166,7 @@
                             <div class="col-md-6 inputGroupContainer">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                    <input name="SITE" placeholder="Empresa" class="form-control" type="text">
+                                    <input name="EMPRESA" placeholder="Empresa" class="form-control" type="text">
                                 </div>
                             </div>
                         </div>
