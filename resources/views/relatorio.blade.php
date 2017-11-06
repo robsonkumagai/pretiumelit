@@ -111,12 +111,11 @@
                     <thead>
                     <tr>
                         <td style="width: 300px">Produto</td>
-                        <td>Marca</td>
                         <td>Categoria</td>
                         <td>Data Atualização</td>
                         <td style="width: 160px">Valores</td>
                         <td style="width: 140px">Diferenças</td>
-                        <td>Buybox</td>
+                        <td style="width: 140px">Status</td>
                     </tr>
                     </thead>
 
@@ -177,13 +176,12 @@
 
                             echo '
                                    <tr>
-                                        <td>'.$produto["nome"].' <br><a style="color: #00b3ee" href="'.$produto['anuncio'].'" target="_blank">Link</a> </td>
-                                        <td>'.$produto["marca"].'</td>
+                                        <td><strong>Produto: </strong>'.$produto["nome"].' <br><strong>Marca: </strong>'.$produto["marca"].'<br><a style="color: #00b3ee" href="'.$produto['anuncio'].'" target="_blank">Link</a> </td>
                                         <td>'.$produto["categoria"].'</td>
                                         <td>'.$produto["data_atualizacao"].'</td>
                                         <td><strong>Valor:</strong> '.$produto["preco"].' <br><strong>Valor Mínimo:</strong> '.$produto["preco_minimo"].'<br><strong>Valor Máximo:</strong> '.$produto["preco_maximo"].'</td>
                                         <td><strong>Porcentagem:</strong> '.$produto["diffPorc"].' <br><strong>Reais:</strong> '.$produto["diffReais"].'</td>
-                                        <td>'.$produto["status"].'</td>
+                                        <td><strong>Vencedor: </strong>'.$produto["vencedor"].'<br><strong>Status: </strong>'.$produto["status"].'</td>
                                    </tr>
                                    ';
                         }

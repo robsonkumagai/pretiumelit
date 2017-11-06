@@ -63,6 +63,7 @@ class ConcorrentesController extends Controller
         $lojistas = array();
 
         preg_match('/var siteMetadata = (.*);/', $exec, $match);
+
         $metaData = (json_decode($match[1]));
 
         $product = $metaData->page->product;
@@ -94,6 +95,7 @@ class ConcorrentesController extends Controller
         $produto['preco_minimo']    = $product->sellers->lowPrice;
         $produto['preco_maximo']    = $product->sellers->highPrice;
         $produto['disponivel']      = $product->StockAvailability;
+        $produto['vencedor']        = $arrayLojas[0]['nome'];
 
         if (($minhaLoja['preco'] == $produto['preco_minimo'])) {
             if (isset($arrayLojas[1]['preco'])) {
@@ -132,6 +134,7 @@ class ConcorrentesController extends Controller
                 'data'             => now(),
                 'data_atualizacao' => now(),
                 'status'           => $status,
+                'vencedor'         => $produto['vencedor'],
             ]);
         } else {
             DB::table('comparador_produtos')->update([
@@ -148,6 +151,7 @@ class ConcorrentesController extends Controller
                 'disponivel'       => $produto['disponivel'],
                 'data_atualizacao' => now(),
                 'status'           => $status,
+                'vencedor'         => $produto['vencedor'],
             ]);
         }
 
@@ -186,6 +190,7 @@ class ConcorrentesController extends Controller
                 break;
             }
         }
+
         return $resposta;
     }
 }
