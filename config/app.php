@@ -178,8 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
-        Orchestra\Html\HtmlServiceProvider::class,
-        'Stevebauman\EloquentTable\EloquentTableServiceProvider',
+        //Orchestra\Html\HtmlServiceProvider::class,
+        //'Stevebauman\EloquentTable\EloquentTableServiceProvider',
     ],
 
     /*
@@ -229,11 +229,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        //'Form' => Collective\Html\FormFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Form' => Orchestra\Support\Facades\Form::class,
-        'HTML' => Orchestra\Support\Facades\HTML::class,
-        'Table' => Orchestra\Support\Facades\Table::class,
+        //'Form' => Orchestra\Support\Facades\Form::class,
+        //'HTML' => Orchestra\Support\Facades\HTML::class,
+        //'Table' => Orchestra\Support\Facades\Table::class,
     ],
 
 ];

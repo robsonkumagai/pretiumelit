@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "23fb55ead1e8afb51669d36d48a632c2",
+    "content-hash": "5904a3ca359455be4d9afb74b9cd9739",
     "packages": [
         {
             "name": "consoletvs/charts",
@@ -58,23 +58,24 @@
         },
         {
             "name": "consoletvs/support",
-            "version": "2.3.4",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Support.git",
-                "reference": "e974a770d4c7357182340e8e875e4b1616f154a4"
+                "reference": "b60c87f54f05d5ec2853b19062b6475e04abce79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Support/zipball/e974a770d4c7357182340e8e875e4b1616f154a4",
-                "reference": "e974a770d4c7357182340e8e875e4b1616f154a4",
+                "url": "https://api.github.com/repos/ConsoleTVs/Support/zipball/b60c87f54f05d5ec2853b19062b6475e04abce79",
+                "reference": "b60c87f54f05d5ec2853b19062b6475e04abce79",
                 "shasum": ""
             },
             "require": {
                 "ext-bcmath": "*",
                 "illuminate/support": "5.*",
                 "intervention/image": "^2.4",
-                "php": ">=7.0"
+                "php": ">=7.0",
+                "umpirsky/language-list": "^1.0"
             },
             "type": "library",
             "extra": {
@@ -100,63 +101,7 @@
                 }
             ],
             "description": "ConsoleTVs support library",
-            "time": "2017-10-16T15:14:08+00:00"
-        },
-        {
-            "name": "danielstjules/stringy",
-            "version": "3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "df24ab62d2d8213bbbe88cc36fc35a4503b4bd7e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/df24ab62d2d8213bbbe88cc36fc35a4503b4bd7e",
-                "reference": "df24ab62d2d8213bbbe88cc36fc35a4503b4bd7e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "symfony/polyfill-mbstring": "~1.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Stringy\\": "src/"
-                },
-                "files": [
-                    "src/Create.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel St. Jules",
-                    "email": "danielst.jules@gmail.com",
-                    "homepage": "http://www.danielstjules.com"
-                }
-            ],
-            "description": "A string manipulation library with multibyte support",
-            "homepage": "https://github.com/danielstjules/Stringy",
-            "keywords": [
-                "UTF",
-                "helpers",
-                "manipulation",
-                "methods",
-                "multibyte",
-                "string",
-                "utf-8",
-                "utility",
-                "utils"
-            ],
-            "time": "2017-06-12T01:10:27+00:00"
+            "time": "2017-11-03T13:51:40+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1635,7 +1580,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
@@ -1732,16 +1677,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08131e7ff29de6bb9f12275c7d35df71f25f4d89",
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89",
                 "shasum": ""
             },
             "require": {
@@ -1779,184 +1724,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-09-02T17:10:46+00:00"
-        },
-        {
-            "name": "orchestra/contracts",
-            "version": "v3.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orchestral/contracts.git",
-                "reference": "7997335b492c9ff009fce6014f9e9a03941d1624"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/contracts/zipball/7997335b492c9ff009fce6014f9e9a03941d1624",
-                "reference": "7997335b492c9ff009fce6014f9e9a03941d1624",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "~5.5.0",
-                "php": ">=7.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Orchestra\\Contracts\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mior Muhammad Zaki",
-                    "email": "crynobone@gmail.com",
-                    "homepage": "https://github.com/crynobone"
-                }
-            ],
-            "description": "Contracts for Orchestra Platform",
-            "keywords": [
-                "contracts",
-                "orchestra-platform",
-                "orchestral"
-            ],
-            "time": "2017-09-04T01:13:03+00:00"
-        },
-        {
-            "name": "orchestra/html",
-            "version": "v3.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orchestral/html.git",
-                "reference": "17fdf0e6254b3d7e3924568ae2805fbc745f19ec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/html/zipball/17fdf0e6254b3d7e3924568ae2805fbc745f19ec",
-                "reference": "17fdf0e6254b3d7e3924568ae2805fbc745f19ec",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/translation": "~5.5.0",
-                "laravie/html": "~5.5.0",
-                "orchestra/contracts": "~3.5.0",
-                "orchestra/support": "~3.5.0",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "illuminate/database": "~5.5.0",
-                "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Orchestra\\Html\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mior Muhammad Zaki",
-                    "email": "crynobone@gmail.com",
-                    "homepage": "https://github.com/crynobone"
-                }
-            ],
-            "description": "HTML Component for Orchestra Platform",
-            "homepage": "http://orchestraplatform.com/docs/latest/components/html/",
-            "keywords": [
-                "form",
-                "html",
-                "laravel",
-                "orchestra-platform",
-                "orchestral",
-                "table"
-            ],
-            "time": "2017-09-03T06:50:26+00:00"
-        },
-        {
-            "name": "orchestra/support",
-            "version": "v3.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orchestral/support.git",
-                "reference": "b1812d0c95e85e80988327c67444bdd0e8784e6b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/support/zipball/b1812d0c95e85e80988327c67444bdd0e8784e6b",
-                "reference": "b1812d0c95e85e80988327c67444bdd0e8784e6b",
-                "shasum": ""
-            },
-            "require": {
-                "danielstjules/stringy": "~2.1 || ~3.0",
-                "illuminate/support": "~5.5.0",
-                "orchestra/contracts": "~3.5.0",
-                "php": ">=7.0"
-            },
-            "replace": {
-                "orchestra/support-core": "self.version",
-                "orchestra/support-facades": "self.version",
-                "orchestra/support-providers": "self.version"
-            },
-            "require-dev": {
-                "illuminate/database": "~5.5.0",
-                "illuminate/encryption": "~5.5.0",
-                "illuminate/http": "~5.5.0",
-                "illuminate/routing": "~5.5.0",
-                "illuminate/session": "~5.5.0",
-                "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "~6.0.3 || ~6.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Orchestra\\Support\\Facades\\": "src/Facades/",
-                    "Orchestra\\Support\\Providers\\": "src/Providers/",
-                    "Orchestra\\Support\\": "src/Support/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mior Muhammad Zaki",
-                    "email": "crynobone@gmail.com",
-                    "homepage": "https://github.com/crynobone"
-                }
-            ],
-            "description": "Support Component for Orchestra Platform",
-            "homepage": "http://orchestraplatform.com/docs/latest/components/support/",
-            "keywords": [
-                "laravel",
-                "orchestra-platform",
-                "orchestral",
-                "utilities",
-                "validator"
-            ],
-            "time": "2017-10-30T14:34:10+00:00"
+            "time": "2017-11-04T11:48:34+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2267,16 +2035,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.13",
+            "version": "v0.8.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d"
+                "reference": "91e53c16560bdb8b9592544bb38429ae00d6baee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
-                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/91e53c16560bdb8b9592544bb38429ae00d6baee",
+                "reference": "91e53c16560bdb8b9592544bb38429ae00d6baee",
                 "shasum": ""
             },
             "require": {
@@ -2336,7 +2104,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-10-19T06:13:20+00:00"
+            "time": "2017-11-04T16:06:49+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -3362,6 +3130,41 @@
             "time": "2016-09-20T12:50:39+00:00"
         },
         {
+            "name": "umpirsky/language-list",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/umpirsky/language-list.git",
+                "reference": "3079e6ea4d908bd9f8e0b07477c7d8ad3b1d8c8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/umpirsky/language-list/zipball/3079e6ea4d908bd9f8e0b07477c7d8ad3b1d8c8c",
+                "reference": "3079e6ea4d908bd9f8e0b07477c7d8ad3b1d8c8c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "symfony/locale": "^2.7|^3.0",
+                "umpirsky/list-generator": "^1.1"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saša Stamenković",
+                    "email": "umpirsky@gmail.com"
+                }
+            ],
+            "description": "List of all languages with names and ISO 639-1 codes in all languages and all data formats.",
+            "time": "2016-09-26T14:12:15+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.4.0",
             "source": {
@@ -3410,93 +3213,6 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
-        },
-        {
-            "name": "yajra/laravel-oci8",
-            "version": "v2.4.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yajra/laravel-oci8.git",
-                "reference": "d0fc2114eafa12e9343e28e9d48429bd44ec516a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-oci8/zipball/d0fc2114eafa12e9343e28e9d48429bd44ec516a",
-                "reference": "d0fc2114eafa12e9343e28e9d48429bd44ec516a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~4.2|~5.0",
-                "illuminate/support": "~4.2|~5.0",
-                "php": ">=5.4",
-                "yajra/laravel-pdo-via-oci8": "~1.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "yajra\\Oci8": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Arjay Angeles",
-                    "email": "aqangeles@gmail.com"
-                }
-            ],
-            "description": "Oracle DB driver for Laravel 4|5 via OCI8",
-            "keywords": [
-                "laravel",
-                "laravel4",
-                "laravel5",
-                "oci8",
-                "oracle",
-                "pdo_oci"
-            ],
-            "time": "2016-01-08T01:11:58+00:00"
-        },
-        {
-            "name": "yajra/laravel-pdo-via-oci8",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yajra/pdo-via-oci8.git",
-                "reference": "b3e52482af67770a0b3ea620f11ba0a1b38b4afd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yajra/pdo-via-oci8/zipball/b3e52482af67770a0b3ea620f11ba0a1b38b4afd",
-                "reference": "b3e52482af67770a0b3ea620f11ba0a1b38b4afd",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Yajra\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Arjay Angeles",
-                    "email": "aqangeles@gmail.com"
-                }
-            ],
-            "description": "PDO userspace driver proxying calls to PHP OCI8 driver",
-            "time": "2017-02-02T02:51:53+00:00"
         }
     ],
     "packages-dev": [
@@ -4133,16 +3849,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "5.2.2",
+            "version": "5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "8ed1902a57849e117b5651fc1a5c48110946c06b"
+                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8ed1902a57849e117b5651fc1a5c48110946c06b",
-                "reference": "8ed1902a57849e117b5651fc1a5c48110946c06b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
+                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
                 "shasum": ""
             },
             "require": {
@@ -4151,7 +3867,7 @@
                 "php": "^7.0",
                 "phpunit/php-file-iterator": "^1.4.2",
                 "phpunit/php-text-template": "^1.2.1",
-                "phpunit/php-token-stream": "^1.4.11 || ^2.0",
+                "phpunit/php-token-stream": "^2.0",
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
                 "sebastian/environment": "^3.0",
                 "sebastian/version": "^2.0.1",
@@ -4193,7 +3909,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-08-03T12:40:43+00:00"
+            "time": "2017-11-03T13:47:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4571,30 +4287,30 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "2.0.2",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "ae068fede81d06e7bb9bb46a367210a3d3e1fe6a"
+                "reference": "1174d9018191e93cb9d719edec01257fc05f8158"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/ae068fede81d06e7bb9bb46a367210a3d3e1fe6a",
-                "reference": "ae068fede81d06e7bb9bb46a367210a3d3e1fe6a",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/1174d9018191e93cb9d719edec01257fc05f8158",
+                "reference": "1174d9018191e93cb9d719edec01257fc05f8158",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
                 "sebastian/diff": "^2.0",
-                "sebastian/exporter": "^3.0"
+                "sebastian/exporter": "^3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^6.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -4625,13 +4341,13 @@
                 }
             ],
             "description": "Provides the functionality to compare PHP values for equality",
-            "homepage": "http://www.github.com/sebastianbergmann/comparator",
+            "homepage": "https://github.com/sebastianbergmann/comparator",
             "keywords": [
                 "comparator",
                 "compare",
                 "equality"
             ],
-            "time": "2017-08-03T07:14:59+00:00"
+            "time": "2017-11-03T07:16:52+00:00"
         },
         {
             "name": "sebastian/diff",
