@@ -233,7 +233,7 @@
                                                 <div class="col-md-6 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                                        <input name="TELEFONE" placeholder="(14)3333-3333" class="form-control" type="text">
+                                                        <input name="TELEFONE" placeholder="(14)99700-2802" class="form-control" type="text">
                                                     </div>
                                                 </div>
 
