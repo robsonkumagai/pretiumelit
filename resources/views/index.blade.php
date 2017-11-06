@@ -74,7 +74,7 @@
             <div class="wrapper">
                 <div class="col-md-6">
                     <div class="about-photo">
-                        <img src="/images/extra.png" style="width: 450px; padding-left: 70px; padding-top: 50px"/>
+                        <img src="/images/extra.png" style="width: 450px; padding-top: 180px"/>
                     </div>
                 </div>
 
