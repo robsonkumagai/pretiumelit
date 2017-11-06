@@ -317,7 +317,7 @@
                     <div class="contact-category">
                         <div class="phone">
                             <h3>Telefone :</h3>
-                            <h4>(14) 3333-3333</h4>
+                            <h4>(14) 99700-2802</h4>
                         </div>
                     </div>
 
