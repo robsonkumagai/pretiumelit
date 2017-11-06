@@ -102,10 +102,7 @@ class HomeController extends Controller
 
         });
 
-        print_r(response()); exit;
-
-        //Alterar o redirecionamento
-        return response()->json(['message' => 'Request completed']);
+        return redirect()->action('HomeController@index');
     }
 
     public function relatorio() {

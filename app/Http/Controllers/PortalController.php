@@ -49,8 +49,7 @@ class PortalController extends Controller
 
         });
 
-        //Alterar o redirecionamento
-        return response()->json(['message' => 'Request completed']);
+        return redirect()->route('/');
     }
 
     /**
