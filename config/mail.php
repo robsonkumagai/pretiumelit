@@ -83,13 +83,9 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
-    'username' => env('MAIL_USERNAME','pretiumelit@outlook.com'),
+    'username' => env('MAIL_USERNAME','******'),
 
-    'password' => env('MAIL_PASSWORD','mudar*123'),
-
-    //'username' => env('pretiumelit@outlook.com'),
-
-    //'password' => env('mudar*123'),
+    'password' => env('MAIL_PASSWORD','******'),
 
     /*
     |--------------------------------------------------------------------------
